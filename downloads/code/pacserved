@@ -1,0 +1,13 @@
+# Use this array to pass additional arguments to the Pacserve daemon, e.g.
+# PACSERVED_ARGS=(--multicast --log /var/log/pacserve/pacserve.log)
+
+# See "pacserve --help" for more information.
+
+# The following options are used by the daemon and must not be included in the
+# array:
+#
+# --daemon
+# --pid-file
+# --su
+
+PACSERVED_ARGS=(--daemon --log /tmp/pacserve.log)

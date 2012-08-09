@@ -4,7 +4,7 @@
   <title><![CDATA[Category: AIF | Exhortatory]]></title>
   <link href="http://jdodds.github.com/blog/categories/aif/atom.xml" rel="self"/>
   <link href="http://jdodds.github.com/"/>
-  <updated>2012-08-09T02:44:30-04:00</updated>
+  <updated>2012-08-09T06:57:53-04:00</updated>
   <id>http://jdodds.github.com/</id>
   <author>
     <name><![CDATA[Jeremiah Dodds]]></name>
@@ -12,6 +12,289 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[setting up a development environment for AIF]]></title>
+    <link href="http://jdodds.github.com/blog/2012/08/09/setting-up-a-development-environment-for-aif/"/>
+    <updated>2012-08-09T04:17:00-04:00</updated>
+    <id>http://jdodds.github.com/blog/2012/08/09/setting-up-a-development-environment-for-aif</id>
+    <content type="html"><![CDATA[<p>I've spent the last couple of days setting up a development environment for
+working on AIF. In this post, I'm going to walk you through the setup I came up
+with. If you have any suggestions, please let me know -- some of this involves
+stuff that I'm not incredibly well-versed in.</p>
+
+<h2>Prerequisites</h2>
+
+<p>First off, I'm assuming you're working on a machine running
+<a href="http://archlinux.org">arch</a>. You'll also need a copy of the
+<a href="http://www.archlinux.org/download/">latest install media</a> and
+<a href="http://git-scm.com/">git</a>, if you don't already have that installed.</p>
+
+<p>You'll need to have a local checkout of both AIF and libui-sh, a dependency of
+AIF:</p>
+
+<p><code>
+$ git clone https://github.com/jdodds/aif
+$ git clone https://github.com/Dieterbe/libui-sh
+</code></p>
+
+<h2>Setting Up a VM</h2>
+
+<p>I'm using <a href="http://wiki.qemu.org/Main_Page">qemu</a>. As far as I can tell, you
+should too. The setup required is quite a bit more involved than the setup
+for (for example) <a href="http://www.virtualbox.org">virtualbox</a>, but it's a much more
+suited tool for what we need to do.</p>
+
+<p>Install qemu:</p>
+
+<p>```</p>
+
+<h1>pacman -S qemu</h1>
+
+<p>```</p>
+
+<p>The first thing you'll need to do is create a disk image for qemu to use:</p>
+
+<p><code>
+qemu-img create -f qcow2 ~/vms/aif-testing/base.qcow2
+</code></p>
+
+<p>If your machine supports <a href="http://www.linux-kvm.org/page/Main_Page">kvm</a>, you'll
+want to load both the <code>kvm</code> and either the <code>kvm-intel</code> or <code>kvm-amd</code> kernel
+modules:</p>
+
+<p>```</p>
+
+<h1>modprobe kvm &amp;&amp; modprobe kvm-intel</h1>
+
+<p>```</p>
+
+<p>You'll probably want to stick those in <code>MODULES</code> in <code>/etc/rc.conf</code>. You'll also
+want to add yourself to the <code>kvm</code> group:</p>
+
+<p>```</p>
+
+<h1>groupadd -a -G kvm $USERNAME</h1>
+
+<p>```</p>
+
+<p>And then either re-login or run <code>su -</code> in your terminal emulator of choice.</p>
+
+<p>Now we should be able to start arch in our vm. I use a simple script:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (vm-aif)</span> <a href='/downloads/code/vm-aif'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/usr/bin/env sh</span>
+</span><span class='line'>
+</span><span class='line'>qemu-system-x86_64 <span class="se">\</span>
+</span><span class='line'>    -enable-kvm <span class="se">\</span>
+</span><span class='line'>    -cdrom ~/isos/archlinux-2012.08.04-dual.iso <span class="se">\</span>
+</span><span class='line'>    -boot <span class="nv">order</span><span class="o">=</span>d <span class="se">\</span>
+</span><span class='line'>    -daemonize <span class="se">\</span>
+</span><span class='line'>    -m 2G <span class="se">\</span>
+</span><span class='line'>    -k en-us <span class="se">\</span>
+</span><span class='line'>    ~/vms/aif-testing/base.qcow2
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Stick the above somewhere in <code>$PATH</code> and run it, and you should see something
+like this:</p>
+
+<p><img src="/images/arch-live-splash.png"></p>
+
+<p>Press <code>Ctrl-Alt-Shift-2</code> to get to qemu's "monitor". You can do a lot of stuff
+from here, but for now you should at least know that:</p>
+
+<ul>
+<li><code>quit</code> quits</li>
+<li><code>savevm foo</code> creates a snapshot named foo</li>
+<li><code>loadvm foo</code> loads the snapshot named foo</li>
+<li><code>info snapshots</code> shows information about snapshots</li>
+</ul>
+
+
+<p>Press <code>Ctrl-Alt-Shift-1</code> to get back to the boot screen, and boot. Once you're
+in, your host machine is available to the vm as <code>10.0.2.2</code>.</p>
+
+<h2>git-daemon</h2>
+
+<p>There are a few ways you could make your working copy of AIF and libui-sh
+available to your vm, <code>git-daemon</code> is what I went with. If you have git
+installed from arch's repos, you should already have it.</p>
+
+<p>I have all the code I actively work on under <code>$HOME/workspace</code>. If you use a
+similar setup, modify <code>/etc/conf.d/git-daemon.conf</code> to look something like:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (git-daemon.conf)</span> <a href='/downloads/code/git-daemon.conf'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># path to git repositories served</span>
+</span><span class='line'><span class="c"># GIT_REPO=&quot;/srv/git/&quot;</span>
+</span><span class='line'><span class="c"># see `man git-daemon` for all available options</span>
+</span><span class='line'><span class="c"># $GIT_REPO will be present twice in most configs</span>
+</span><span class='line'><span class="nv">GIT_DAEMON_ARGS</span><span class="o">=</span><span class="s2">&quot;--detach --syslog --verbose --user-path&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>The <code>--user-path</code> option allows us to clone from the vm easily later.</p>
+
+<p>Now, start up <code>git-daemon</code>:</p>
+
+<p>```</p>
+
+<h1>rc.d start git-daemon</h1>
+
+<p>```</p>
+
+<p>And then over in your vm, you need to get some basics set up:</p>
+
+<p>```</p>
+
+<h1>pacman -Sy git binutils dialog make</h1>
+
+<h1>git clone git://10.0.2.2/~$USERNAME/path/to/aif</h1>
+
+<h1>git clone git://10.0.2.2/~$USERNME/path/to/libui-sh</h1>
+
+<h1>cd libui-sh &amp;&amp; git checkout -t develop &amp;&amp; make install &amp;&amp; cd -</h1>
+
+<h1>cd aif &amp;&amp; git checkout -t develop</h1>
+
+<p>```</p>
+
+<h3>Take a Snaphot</h3>
+
+<p>At this point, you're pretty well set-up in your vm. Switch over to the monitor,
+and use <code>savevm</code> to create a snapshot that you can reload later with <code>loadvm</code>.</p>
+
+<h2>Sharing Packages With Your Host Machine</h2>
+
+<p>I ended up using <a href="http://xyne.archlinux.ca/projects/pacserve">pacserve</a> to do
+this. Here's my <code>/etc/conf.d/pacserved</code>:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (pacserved)</span> <a href='/downloads/code/pacserved'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># Use this array to pass additional arguments to the Pacserve daemon, e.g.</span>
+</span><span class='line'><span class="c"># PACSERVED_ARGS=(--multicast --log /var/log/pacserve/pacserve.log)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># See &quot;pacserve --help&quot; for more information.</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># The following options are used by the daemon and must not be included in the</span>
+</span><span class='line'><span class="c"># array:</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># --daemon</span>
+</span><span class='line'><span class="c"># --pid-file</span>
+</span><span class='line'><span class="c"># --su</span>
+</span><span class='line'>
+</span><span class='line'><span class="nv">PACSERVED_ARGS</span><span class="o">=(</span>--daemon --log /tmp/pacserve.log<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>I'm now considering just mounting the host machine's <code>/var/cache/pacman</code> via nfs
+or similar, but the code in the experimental branch of AIF assumes the above,
+and it works pretty well.</p>
+
+<p>At this point you could <code>loadvm</code> if you need to and:</p>
+
+<p>```</p>
+
+<h1>make install # assuming you're in the aif checkout on the vm</h1>
+
+<h1>aif -p automatic -c unofficial/jdd-generic-install-sda-using-host-packages</h1>
+
+<p>```</p>
+
+<p>And everything should work. You should be able to reboot into a working arch
+system. In fact, if you do this and it doesn't work, please let me know.</p>
+
+<h2>(optional) Making AIF Available as a Package on the vm</h2>
+
+<p>This is really only necessary for using or working on<code>aif-test</code>, and is by far
+the area where I'm the least sure of whether I'm doing stuff right. In the
+"experimental" branch, there are two PKGBUILD templates in
+<code>unofficial/pkgbuild-templates</code>. Here's a rundown of what you need to do:</p>
+
+<p>```</p>
+
+<h1>cd</h1>
+
+<h1>mkdir -p packages/{aif,libui-sh}</h1>
+
+<h1>cp aif/unofficial/pkgbuild-templates/PKGBUILD.aif packages/aif/PKGBUILD</h1>
+
+<h1>cp aif/unofficial/pkgbuild-templates/PKGBUILD.libui-sh packages/libui-sh/PKGBUILD</h1>
+
+<p>```</p>
+
+<p>Now, edit the two PKGBUILDS, and set <code>_gitroot</code> to an appropriate value. This
+should be the only required edit.</p>
+
+<p>Next:</p>
+
+<p>```</p>
+
+<h1>cd packages/libui-sh &amp;&amp; makepkg --asroot &amp;&amp; cd -</h1>
+
+<h1>cd packages/aif &amp;&amp; makepkg --asroot --nodeps &amp;&amp; cd -</h1>
+
+<h1>mkdir repo</h1>
+
+<h1>repo-add repo/aif.db.tar.gz \</h1>
+
+<h1>packages/libui-sh/libui-sh<em>.pkg.tar.gz packages/aif/aif</em>.pkg.tar.gz</h1>
+
+<h1>cp packages/{libui-sh,aif}/*pkg.tar.gz repo/</h1>
+
+<p>```</p>
+
+<p>And now the <code>aif-test</code> scripts should run, and make use of your host's
+packages. As far as I know, none of them are actually <em>working</em> entirely, and
+this entire step is only actually necessary if AIF is a dependency on the vm
+after the install finishes in order for <code>aif-test</code> to finish. I haven't read
+enough of it to know quite yet.</p>
+
+<p>It would also be unnecessary if AIF and libui-sh were still available in the
+repos. I don't particularly like the PKGBUILD-template idea, even though it
+works. If this actually is necessary right now, hopefully it won't be for long.</p>
+
+<h2>Basic Development Workflow</h2>
+
+<ul>
+<li>Work on your host machine</li>
+<li><code>loadvm</code> in qemu monitor</li>
+<li><code>git pull</code></li>
+<li><code>make install</code></li>
+<li>run the part of aif you want to test</li>
+</ul>
+
+
+<h2>Conclusion</h2>
+
+<p>Well, that was a lot of setup, but it also helps keep the feedback loop short,
+which is nice. If you've got any suggestions, I'd love to hear them!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[taking over development of AIF]]></title>

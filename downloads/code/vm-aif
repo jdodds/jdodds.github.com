@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+qemu-system-x86_64 \
+    -enable-kvm \
+    -cdrom ~/isos/archlinux-2012.08.04-dual.iso \
+    -boot order=d \
+    -daemonize \
+    -m 2G \
+    -k en-us \
+    ~/vms/aif-testing/base.qcow2
