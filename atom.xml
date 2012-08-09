@@ -4,7 +4,7 @@
   <title><![CDATA[Exhortatory]]></title>
   <link href="http://jdodds.github.com/atom.xml" rel="self"/>
   <link href="http://jdodds.github.com/"/>
-  <updated>2012-08-08T19:53:06-04:00</updated>
+  <updated>2012-08-08T20:42:35-04:00</updated>
   <id>http://jdodds.github.com/</id>
   <author>
     <name><![CDATA[Jeremiah Dodds]]></name>
@@ -12,5 +12,16 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[First Post]]></title>
+    <link href="http://jdodds.github.com/blog/2012/08/08/first-post/"/>
+    <updated>2012-08-08T20:40:00-04:00</updated>
+    <id>http://jdodds.github.com/blog/2012/08/08/first-post</id>
+    <content type="html"><![CDATA[<p>For the first time in a while, I&#8217;m feeling the urge to start writing about the
+tech stuff that I do. This seems like a good platform for doing that with, we&#8217;ll
+see how it goes.</p>
+]]></content>
+  </entry>
   
 </feed>
