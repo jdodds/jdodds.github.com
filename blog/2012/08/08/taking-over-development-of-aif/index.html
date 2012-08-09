@@ -5,12 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>First Post - Exhortatory</title>
+  <title>taking over development of AIF - Exhortatory</title>
   <meta name="author" content="Jeremiah Dodds">
 
   
-  <meta name="description" content="For the first time in a while, I&#8217;m feeling the urge to start writing about the
-tech stuff that I do. This seems like a good platform for doing &hellip;">
+  <meta name="description" content="Deiter Plaetinck recently handed
+AIF, the Arch Linux
+Installation Framework over to me, I&#8217;m pretty excited about it. There&#8217;s a lot of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +20,7 @@ tech stuff that I do. This seems like a good platform for doing &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jdodds.github.com/blog/2012/08/08/first-post/">
+  <link rel="canonical" href="http://jdodds.github.com/blog/2012/08/08/taking-over-development-of-aif/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -66,7 +67,7 @@ tech stuff that I do. This seems like a good platform for doing &hellip;">
   
   <header>
     
-      <h1 class="entry-title">First Post</h1>
+      <h1 class="entry-title">Taking Over Development of AIF</h1>
     
     
       <p class="meta">
@@ -82,7 +83,7 @@ tech stuff that I do. This seems like a good platform for doing &hellip;">
   
 
 
-<time datetime="2012-08-08T20:40:00-04:00" pubdate data-updated="true">Aug 8<span>th</span>, 2012</time>
+<time datetime="2012-08-08T23:05:00-04:00" pubdate data-updated="true">Aug 8<span>th</span>, 2012</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -91,9 +92,33 @@ tech stuff that I do. This seems like a good platform for doing &hellip;">
   </header>
 
 
-<div class="entry-content"><p>For the first time in a while, I&#8217;m feeling the urge to start writing about the
-tech stuff that I do. This seems like a good platform for doing that with, we&#8217;ll
-see how it goes.</p>
+<div class="entry-content"><p><a href="https://github.com/Dieterbe">Deiter Plaetinck</a> recently handed
+<a href="https://github.com/jdodds/aif">AIF</a>, the <a href="http://archlinux.org">Arch Linux</a>
+Installation Framework over to me, I&#8217;m pretty excited about it.</p>
+
+<p>There&#8217;s a lot of work that needs to be done &#8211; AIF is currently fairly
+broken. I&#8217;m aiming to fix that, and it looks like some major restructuring will
+be in order. There are some other popular installation tools around &#8211;
+<a href="http://projects.archlinux.org/archboot.git/">Archboot</a>, and the current tools on
+the install disks,
+<a href="https://github.com/falconindy/arch-install-scripts">arch install scripts</a>. There
+is also work being done on a
+<a href="https://github.com/bwrsandman/pyaif">port to python</a>, which I&#8217;m keeping an eye
+on.</p>
+
+<p>So far, I have support for <code>grub-bios</code> and <code>syslinux</code> working as bootloaders. I
+recently spent a couple of days setting up a development environment for making
+testing AIF less of a pain, there will be a post describing that coming soon.</p>
+
+<p>I&#8217;m interested in continuing work on AIF for a few reasons. For one, it&#8217;s really
+a pretty nice tool. The ideas that it&#8217;s trying to implement are, at the core,
+pretty solid in my opinion. It was also the default installation tool for arch
+for quite some time, and people seem to miss it. In addition, I&#8217;ve been wanting
+to start contributing back to the arch community for a little while, and I
+happen to be working on some tools for making generation of customized Linux
+install and live images easy that are partially built on top of AIF.</p>
+
+<p>If you&#8217;d like to help out, patches, advice, and feedback are always welcome.</p>
 </div>
 
 
@@ -116,15 +141,21 @@ see how it goes.</p>
   
 
 
-<time datetime="2012-08-08T20:40:00-04:00" pubdate data-updated="true">Aug 8<span>th</span>, 2012</time>
+<time datetime="2012-08-08T23:05:00-04:00" pubdate data-updated="true">Aug 8<span>th</span>, 2012</time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/aif/'>AIF</a>, <a class='category' href='/blog/categories/archlinux/'>archlinux</a>
+  
+</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jdodds.github.com/blog/2012/08/08/first-post/" data-via="kaens" data-counturl="http://jdodds.github.com/blog/2012/08/08/first-post/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jdodds.github.com/blog/2012/08/08/taking-over-development-of-aif/" data-via="kaens" data-counturl="http://jdodds.github.com/blog/2012/08/08/taking-over-development-of-aif/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -135,8 +166,8 @@ see how it goes.</p>
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2012/08/08/first-post/" title="Previous Post: First Post">&laquo; First Post</a>
       
-        <a class="basic-alignment right" href="/blog/2012/08/08/taking-over-development-of-aif/" title="Next Post: taking over development of AIF">taking over development of AIF &raquo;</a>
       
     </p>
   </footer>
@@ -236,8 +267,8 @@ see how it goes.</p>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://jdodds.github.com/blog/2012/08/08/first-post/';
-        var disqus_url = 'http://jdodds.github.com/blog/2012/08/08/first-post/';
+        var disqus_identifier = 'http://jdodds.github.com/blog/2012/08/08/taking-over-development-of-aif/';
+        var disqus_url = 'http://jdodds.github.com/blog/2012/08/08/taking-over-development-of-aif/';
         var disqus_script = 'embed.js';
       
     (function () {

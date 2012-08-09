@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Exhortatory]]></title>
-  <link href="http://jdodds.github.com/atom.xml" rel="self"/>
+  <title><![CDATA[Category: archlinux | Exhortatory]]></title>
+  <link href="http://jdodds.github.com/blog/categories/archlinux/atom.xml" rel="self"/>
   <link href="http://jdodds.github.com/"/>
   <updated>2012-08-08T23:49:19-04:00</updated>
   <id>http://jdodds.github.com/</id>
@@ -20,42 +20,31 @@
     <id>http://jdodds.github.com/blog/2012/08/08/taking-over-development-of-aif</id>
     <content type="html"><![CDATA[<p><a href="https://github.com/Dieterbe">Deiter Plaetinck</a> recently handed
 <a href="https://github.com/jdodds/aif">AIF</a>, the <a href="http://archlinux.org">Arch Linux</a>
-Installation Framework over to me, I&#8217;m pretty excited about it.</p>
+Installation Framework over to me, I'm pretty excited about it.</p>
 
-<p>There&#8217;s a lot of work that needs to be done &#8211; AIF is currently fairly
-broken. I&#8217;m aiming to fix that, and it looks like some major restructuring will
-be in order. There are some other popular installation tools around &#8211;
+<p>There's a lot of work that needs to be done -- AIF is currently fairly
+broken. I'm aiming to fix that, and it looks like some major restructuring will
+be in order. There are some other popular installation tools around --
 <a href="http://projects.archlinux.org/archboot.git/">Archboot</a>, and the current tools on
 the install disks,
 <a href="https://github.com/falconindy/arch-install-scripts">arch install scripts</a>. There
 is also work being done on a
-<a href="https://github.com/bwrsandman/pyaif">port to python</a>, which I&#8217;m keeping an eye
+<a href="https://github.com/bwrsandman/pyaif">port to python</a>, which I'm keeping an eye
 on.</p>
 
 <p>So far, I have support for <code>grub-bios</code> and <code>syslinux</code> working as bootloaders. I
 recently spent a couple of days setting up a development environment for making
 testing AIF less of a pain, there will be a post describing that coming soon.</p>
 
-<p>I&#8217;m interested in continuing work on AIF for a few reasons. For one, it&#8217;s really
-a pretty nice tool. The ideas that it&#8217;s trying to implement are, at the core,
+<p>I'm interested in continuing work on AIF for a few reasons. For one, it's really
+a pretty nice tool. The ideas that it's trying to implement are, at the core,
 pretty solid in my opinion. It was also the default installation tool for arch
-for quite some time, and people seem to miss it. In addition, I&#8217;ve been wanting
+for quite some time, and people seem to miss it. In addition, I've been wanting
 to start contributing back to the arch community for a little while, and I
 happen to be working on some tools for making generation of customized Linux
 install and live images easy that are partially built on top of AIF.</p>
 
-<p>If you&#8217;d like to help out, patches, advice, and feedback are always welcome.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[First Post]]></title>
-    <link href="http://jdodds.github.com/blog/2012/08/08/first-post/"/>
-    <updated>2012-08-08T20:40:00-04:00</updated>
-    <id>http://jdodds.github.com/blog/2012/08/08/first-post</id>
-    <content type="html"><![CDATA[<p>For the first time in a while, I&#8217;m feeling the urge to start writing about the
-tech stuff that I do. This seems like a good platform for doing that with, we&#8217;ll
-see how it goes.</p>
+<p>If you'd like to help out, patches, advice, and feedback are always welcome.</p>
 ]]></content>
   </entry>
   
