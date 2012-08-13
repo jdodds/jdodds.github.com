@@ -42,7 +42,7 @@ Install qemu:
 The first thing you'll need to do is create a disk image for qemu to use:
 
 ```
-qemu-img create -f qcow2 ~/vms/aif-testing/base.qcow2
+qemu-img create -f qcow2 ~/vms/aif-testing/base.qcow2 8G
 ```
 
 If your machine supports [kvm](http://www.linux-kvm.org/page/Main_Page), you'll
@@ -187,3 +187,8 @@ works. If this actually is necessary right now, hopefully it won't be for long.
 
 Well, that was a lot of setup, but it also helps keep the feedback loop short,
 which is nice. If you've got any suggestions, I'd love to hear them!
+
+
+## Updates ##
+
+Updated on Mon Aug 13 10:05:47 EDT 2012 to fix typo pointed out by Mr Greem.
