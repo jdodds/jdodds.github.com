@@ -191,6 +191,6 @@ which is nice. If you've got any suggestions, I'd love to hear them!
 
 ## Updates ##
 
-+ Updated on Mon Aug 13 10:05:47 EDT 2012 to fix typo pointed out by Mr Greem.
++ Updated on Mon Aug 13 10:05:47 EDT 2012 to fix typo pointed out by Mr Green.
 + Updated on Mon Aug 13 14:27:49 EDT 2012 to fix erroneous groupadd command
-  pointed out by Mr Greem.
+  pointed out by Mr Green.
