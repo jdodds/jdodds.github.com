@@ -4,7 +4,7 @@
   <title><![CDATA[Exhortatory]]></title>
   <link href="http://jdodds.github.com/atom.xml" rel="self"/>
   <link href="http://jdodds.github.com/"/>
-  <updated>2012-08-13T10:07:45-04:00</updated>
+  <updated>2012-08-13T14:29:39-04:00</updated>
   <id>http://jdodds.github.com/</id>
   <author>
     <name><![CDATA[Jeremiah Dodds]]></name>
@@ -70,7 +70,7 @@ modules:</p>
 want to add yourself to the <code>kvm</code> group:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># groupadd -a -G kvm $USERNAME</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'># usermod -a -G kvm $USERNAME</span></code></pre></td></tr></table></div></figure>
 
 
 <p>And then either re-login or run <code>su -</code> in your terminal emulator of choice.</p>
@@ -284,7 +284,12 @@ which is nice. If you&#8217;ve got any suggestions, I&#8217;d love to hear them!
 
 <h2>Updates</h2>
 
-<p>Updated on Mon Aug 13 10:05:47 EDT 2012 to fix typo pointed out by Mr Greem.</p>
+<ul>
+<li>Updated on Mon Aug 13 10:05:47 EDT 2012 to fix typo pointed out by Mr Greem.</li>
+<li>Updated on Mon Aug 13 14:27:49 EDT 2012 to fix erroneous groupadd command
+pointed out by Mr Greem.</li>
+</ul>
+
 ]]></content>
   </entry>
   
