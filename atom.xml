@@ -4,7 +4,7 @@
   <title><![CDATA[Exhortatory]]></title>
   <link href="http://jdodds.github.com/atom.xml" rel="self"/>
   <link href="http://jdodds.github.com/"/>
-  <updated>2012-08-09T06:57:53-04:00</updated>
+  <updated>2012-08-13T10:07:45-04:00</updated>
   <id>http://jdodds.github.com/</id>
   <author>
     <name><![CDATA[Jeremiah Dodds]]></name>
@@ -55,7 +55,7 @@ suited tool for what we need to do.</p>
 <p>The first thing you&#8217;ll need to do is create a disk image for qemu to use:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>qemu-img create -f qcow2 ~/vms/aif-testing/base.qcow2</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>qemu-img create -f qcow2 ~/vms/aif-testing/base.qcow2 8G</span></code></pre></td></tr></table></div></figure>
 
 
 <p>If your machine supports <a href="http://www.linux-kvm.org/page/Main_Page">kvm</a>, you&#8217;ll
@@ -281,6 +281,10 @@ works. If this actually is necessary right now, hopefully it won&#8217;t be for 
 
 <p>Well, that was a lot of setup, but it also helps keep the feedback loop short,
 which is nice. If you&#8217;ve got any suggestions, I&#8217;d love to hear them!</p>
+
+<h2>Updates</h2>
+
+<p>Updated on Mon Aug 13 10:05:47 EDT 2012 to fix typo pointed out by Mr Greem.</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: AIF | Exhortatory]]></title>
   <link href="http://jdodds.github.com/blog/categories/aif/atom.xml" rel="self"/>
   <link href="http://jdodds.github.com/"/>
-  <updated>2012-08-09T06:57:53-04:00</updated>
+  <updated>2012-08-13T10:07:45-04:00</updated>
   <id>http://jdodds.github.com/</id>
   <author>
     <name><![CDATA[Jeremiah Dodds]]></name>
@@ -56,7 +56,7 @@ suited tool for what we need to do.</p>
 <p>The first thing you'll need to do is create a disk image for qemu to use:</p>
 
 <p><code>
-qemu-img create -f qcow2 ~/vms/aif-testing/base.qcow2
+qemu-img create -f qcow2 ~/vms/aif-testing/base.qcow2 8G
 </code></p>
 
 <p>If your machine supports <a href="http://www.linux-kvm.org/page/Main_Page">kvm</a>, you'll
@@ -293,6 +293,10 @@ works. If this actually is necessary right now, hopefully it won't be for long.<
 
 <p>Well, that was a lot of setup, but it also helps keep the feedback loop short,
 which is nice. If you've got any suggestions, I'd love to hear them!</p>
+
+<h2>Updates</h2>
+
+<p>Updated on Mon Aug 13 10:05:47 EDT 2012 to fix typo pointed out by Mr Greem.</p>
 ]]></content>
   </entry>
   
