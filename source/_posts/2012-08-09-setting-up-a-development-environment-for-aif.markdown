@@ -57,7 +57,7 @@ You'll probably want to stick those in `MODULES` in `/etc/rc.conf`. You'll also
 want to add yourself to the `kvm` group:
 
 ```
-# groupadd -a -G kvm $USERNAME
+# usermod -a -G kvm $USERNAME
 ```
 
 And then either re-login or run `su -` in your terminal emulator of choice.
@@ -191,4 +191,6 @@ which is nice. If you've got any suggestions, I'd love to hear them!
 
 ## Updates ##
 
-Updated on Mon Aug 13 10:05:47 EDT 2012 to fix typo pointed out by Mr Greem.
++ Updated on Mon Aug 13 10:05:47 EDT 2012 to fix typo pointed out by Mr Greem.
++ Updated on Mon Aug 13 14:27:49 EDT 2012 to fix erroneous groupadd command
+  pointed out by Mr Greem.
