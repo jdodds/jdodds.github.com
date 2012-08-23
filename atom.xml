@@ -4,7 +4,7 @@
   <title><![CDATA[Exhortatory]]></title>
   <link href="http://jdodds.github.com/atom.xml" rel="self"/>
   <link href="http://jdodds.github.com/"/>
-  <updated>2012-08-13T14:31:29-04:00</updated>
+  <updated>2012-08-23T05:09:43-04:00</updated>
   <id>http://jdodds.github.com/</id>
   <author>
     <name><![CDATA[Jeremiah Dodds]]></name>
@@ -12,6 +12,61 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Kickstarter's Appeal Process]]></title>
+    <link href="http://jdodds.github.com/blog/2012/08/23/kickstarters-appeal-process/"/>
+    <updated>2012-08-23T04:47:00-04:00</updated>
+    <id>http://jdodds.github.com/blog/2012/08/23/kickstarters-appeal-process</id>
+    <content type="html"><![CDATA[<p>One of the reasons that I decided to attempt to maintain
+<a href="https://github.com/jdodds/aif">aif</a> was because it&#8217;s very relevant to something
+I&#8217;ve wanted to do for a long time &#8211; make it easy to create customized Linux
+live and install images that have the setup you want available in the live
+environment and immediately after a fresh install.</p>
+
+<p>While I&#8217;m capable of accomplishing that from a technical standpoint, I can&#8217;t
+currently afford much of anything, let alone the hosting costs associated with
+creating and serving install images &#8211; it&#8217;s intensive in terms of CPU use,
+memory, and network usage.</p>
+
+<p>I decided to try to start a <a href="http://www.kickstarter.com/">kickstarter</a> for
+funding the project. I spent a good amount of time reviewing their project
+guidelines, and figuring out how to take a decent video of both myself talking,
+and of a proof-of-concept app doing it&#8217;s thing. When I went to submit it for
+review, I had sent out a preview link to quite a few people, and gotten nothing
+but positive feedback.</p>
+
+<p>To my surprise, my submission was declined, and the reason given was what looked
+like a simple form letter saying that I wasn&#8217;t within their project
+guidelines. Kickstarter allows you to appeal for re-approval, which I did, but
+they only allow you 500 <em>characters</em> with which to do so, a bit on the short end
+if you don&#8217;t provide any feedback as to why a submission is declined.</p>
+
+<p>After submitting the appeal, I received the same form letter back. Exactly the
+same.</p>
+
+<p>It&#8217;s a bit aggravating &#8211; I can see how my project would have not been
+considered the type of thing that kickstarter is for, but if I was being denied
+on a whim, I would have preferred that to be stated explicitly. As it is, it&#8217;s
+not hard at all to browse through successfully funded projects that are either
+in blatant violation of one of their &#8220;project guidelines&#8221;, or that are at least
+as interpretable as such as mine was.</p>
+
+<p>Back in 2011, <a href="http://www.kalzumeus.com/">Patrick McKenzie</a> gave a talk at
+Google called
+<a href="http://www.youtube.com/watch?v=sFWlmEO6eg0&amp;list=UUtXKDgv1AVoG88PLl8nGXmw">What Engineers Don&#8217;t Know We Don&#8217;t Know About Online Marketing</a>,
+where he brought up how incredibly bad the support from Google was when
+someone&#8217;s AdWords account would be suspended, and how it was really, <em>really</em> in
+their best interests to do something about that. I hope Kickstarter starts
+providing more (or any) feedback to people they deny submissions from at some
+point, but I suppose we&#8217;ll just have to wait and see.</p>
+
+<p>In any case, I&#8217;ve since taken what would have been my kickstarter campaign, and
+started it at <a href="http://www.indiegogo.com/customized-linux">indiegogo</a>. Take a
+look at it if you&#8217;re so inclined, or show it to your neckbeard friends. I&#8217;d
+really like to bring the idea to fruition.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[setting up a development environment for AIF]]></title>
