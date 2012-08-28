@@ -4,7 +4,7 @@
   <title><![CDATA[Exhortatory]]></title>
   <link href="http://jdodds.github.com/atom.xml" rel="self"/>
   <link href="http://jdodds.github.com/"/>
-  <updated>2012-08-24T19:10:51-04:00</updated>
+  <updated>2012-08-27T20:46:36-04:00</updated>
   <id>http://jdodds.github.com/</id>
   <author>
     <name><![CDATA[Jeremiah Dodds]]></name>
@@ -12,6 +12,48 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[The Difference Between My Custom Linux Project and Existing Tools]]></title>
+    <link href="http://jdodds.github.com/blog/2012/08/27/the-difference-between-my-custom-linux-project-and-existing-tools/"/>
+    <updated>2012-08-27T20:14:00-04:00</updated>
+    <id>http://jdodds.github.com/blog/2012/08/27/the-difference-between-my-custom-linux-project-and-existing-tools</id>
+    <content type="html"><![CDATA[<p>From a small bit of discussion on
+<a href="http://news.ycombinator.com/item?id=4440894">Hacker News</a> and
+<a href="http://www.reddit.com/r/linux/comments/yx86b/im_trying_to_make_it_easy_for_people_to_generate/">reddit</a>,
+I thought it would be a good idea to extrapolate a bit on what the differences
+are between what I&#8217;m trying to do with my project for
+<a href="http://www.indiegogo.com/customized-linux?a=1092744">generating custom linux images</a>
+and existing tools like <a href="http://susestudio.com/">SUSE Studio</a> and
+<a href="http://puppylinux.org/wikka/woof">woof</a>. In short, what I&#8217;m trying to build has
+a very focused scope, and aims to provide a service to people who may not even
+know basic things about Linux.</p>
+
+<p>The project I&#8217;m trying to launch has a much more limited scope than a tool like
+SUSE Studio &#8211; I&#8217;m trying to focus on making it easy for individual users to
+have access to the setup they use on a daily basis, on their personal
+machines. SUSE Studio is a well-polished tool, but puts a lot of stuff in your
+face by default that the type of user I&#8217;m targeting might not know the first
+thing about.</p>
+
+<p>The focus, interface-wise, in my tool is going to be on applications and user
+data. While I do plan on allowing people to tweak things at as fine-grained of a
+level as they want to, I really want to avoid overwhelming less-technical users
+with the potential complexity of everything that can go into a distro.</p>
+
+<p>Tools like woof and other existing scripts for generating ISOs require a fair
+amount of knowledge from the end-user. I want to provide something that allows
+people to spec everything out if they want to, but will by default provide them
+with the software they use in a live environment, and after a fresh install,
+even if they are close to entirely ignorant of what&#8217;s going on. This includes
+doing things like providing a sane partitioning scheme by default and making sure
+that the live and installed environments are the same in the ways that matter.</p>
+
+<p>I&#8217;m trying to build something that&#8217;s usable by people who aren&#8217;t even close to
+being Linux gurus. Ideally, I&#8217;m trying to build something that&#8217;s usable by
+people who don&#8217;t know the difference between a web-browser and a bootloader.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Kickstarter's Appeal Process]]></title>
