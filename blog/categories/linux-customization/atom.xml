@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux-customization | Exhortatory]]></title>
   <link href="http://jdodds.github.com/blog/categories/linux-customization/atom.xml" rel="self"/>
   <link href="http://jdodds.github.com/"/>
-  <updated>2012-08-27T20:46:36-04:00</updated>
+  <updated>2012-08-27T21:06:29-04:00</updated>
   <id>http://jdodds.github.com/</id>
   <author>
     <name><![CDATA[Jeremiah Dodds]]></name>
@@ -46,8 +46,10 @@ amount of knowledge from the end-user. I want to provide something that allows
 people to spec everything out if they want to, but will by default provide them
 with the software they use in a live environment, and after a fresh install,
 even if they are close to entirely ignorant of what's going on. This includes
-doing things like providing a sane partitioning scheme by default and making sure
-that the live and installed environments are the same in the ways that matter.</p>
+doing things like providing a sane partitioning scheme by default, making sure
+that the live and installed environments are the same in the ways that matter,
+and setting things up in such a way that it's possible for people to create the
+environment they want <strong>even if they don't even know what a package manager is</strong></p>
 
 <p>I'm trying to build something that's usable by people who aren't even close to
 being Linux gurus. Ideally, I'm trying to build something that's usable by
