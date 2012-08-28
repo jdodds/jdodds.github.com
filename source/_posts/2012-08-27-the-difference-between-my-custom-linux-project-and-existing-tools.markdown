@@ -34,8 +34,10 @@ amount of knowledge from the end-user. I want to provide something that allows
 people to spec everything out if they want to, but will by default provide them
 with the software they use in a live environment, and after a fresh install,
 even if they are close to entirely ignorant of what's going on. This includes
-doing things like providing a sane partitioning scheme by default and making sure
-that the live and installed environments are the same in the ways that matter.
+doing things like providing a sane partitioning scheme by default, making sure
+that the live and installed environments are the same in the ways that matter,
+and setting things up in such a way that it's possible for people to create the
+environment they want **even if they don't even know what a package manager is**
 
 I'm trying to build something that's usable by people who aren't even close to
 being Linux gurus. Ideally, I'm trying to build something that's usable by
