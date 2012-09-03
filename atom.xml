@@ -4,7 +4,7 @@
   <title><![CDATA[Exhortatory]]></title>
   <link href="http://jdodds.github.com/atom.xml" rel="self"/>
   <link href="http://jdodds.github.com/"/>
-  <updated>2012-09-03T09:41:46-04:00</updated>
+  <updated>2012-09-03T11:39:24-04:00</updated>
   <id>http://jdodds.github.com/</id>
   <author>
     <name><![CDATA[Jeremiah Dodds]]></name>
@@ -12,6 +12,89 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[TECS: Introduction]]></title>
+    <link href="http://jdodds.github.com/blog/2012/09/03/tecs-introduction/"/>
+    <updated>2012-09-03T11:29:00-04:00</updated>
+    <id>http://jdodds.github.com/blog/2012/09/03/tecs-introduction</id>
+    <content type="html"><![CDATA[<p>This starts a series of posts that will follow my progress while reading
+<a href="http://www1.idc.ac.il/tecs/">The Elements of Computing Systems</a>, which so far
+seems like a very excellent book. I&#8217;ll be taking notes as I go along and doing
+the exercises.</p>
+
+<p>I&#8217;m posting these partially as a motivator for myself to finish the book in
+entirety, and just in case someone finds them useful.</p>
+
+<p>Anyhow, on to the start of the runthrough. This post just covers the
+introductory material.</p>
+
+<!-- more -->
+
+
+<h2>The World Above</h2>
+
+<figure class='code'><figcaption><span> (hello.jack)</span> <a href='http://jdodds.github.com/downloads/code/tecs/introduction/hello.jack'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">function</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">do</span> <span class="n">Output</span><span class="o">.</span><span class="na">printString</span><span class="o">(</span><span class="s">&quot;Hello, World&quot;</span><span class="o">);</span>
+</span><span class='line'>        <span class="k">do</span> <span class="n">Output</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+</span><span class='line'>        <span class="k">return</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To run something like this, it must be parsed, &#8220;understood&#8221;, and then expressed
+in a form that the machine it&#8217;s being run on can execute &#8211; a process called
+&#8220;compilation&#8221;.</p>
+
+<p>The end result of compilation, machine-level code, is an abstraction on top of
+some &#8220;hardware architecture&#8221;, which sits on top of a certain &#8220;chipset&#8221;, made up
+of logic gates made out of &#8220;switching devices&#8221; like transistors. That&#8217;s as far
+down the abstraction ladder we&#8217;ll go.</p>
+
+<h3>Abstractions</h3>
+
+<p>A good modular design implies that you can work on individual modules while
+ignoring the rest of the system.</p>
+
+<p>In computer science, abstraction is defined as a statement of what a module
+does, ignoring the details of how it does it.</p>
+
+<h3>The World Below</h3>
+
+<p>We&#8217;re going to take a &#8220;bottom-up&#8221; approach to describing the systems of
+abstraction in a modern computing system, starting with basic logic gates.</p>
+
+<p>Below, we&#8217;ll survey the book plan in the opposite direction.</p>
+
+<h4>High-Level Language Land</h4>
+
+<p>Where people dream up applications and write software that implements them.</p>
+
+<h4>The Road Down to Hardware Land</h4>
+
+<p>Taking a program and compiling it into the machine language of a target
+platform.</p>
+
+<p>Source text s analyzed and grouped into a &#8220;parse tree., which is then processed
+to create a program written in an intermediate language executable by a
+stack-based virtual machine, which outputs a large assembly program which can be
+executed by an assembler.</p>
+
+<h4>Hardware Land</h4>
+
+<p>Described with HDL.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[a more in-depth look at how what I'm trying to do is different]]></title>
