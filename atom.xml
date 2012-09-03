@@ -4,7 +4,7 @@
   <title><![CDATA[Exhortatory]]></title>
   <link href="http://jdodds.github.com/atom.xml" rel="self"/>
   <link href="http://jdodds.github.com/"/>
-  <updated>2012-08-27T21:07:02-04:00</updated>
+  <updated>2012-09-03T09:40:23-04:00</updated>
   <id>http://jdodds.github.com/</id>
   <author>
     <name><![CDATA[Jeremiah Dodds]]></name>
@@ -12,6 +12,306 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[a more in-depth look at how what I'm trying to do is different]]></title>
+    <link href="http://jdodds.github.com/blog/2012/09/03/a-more-in-depth-look-at-how-what-im-trying-to-do-is-different/"/>
+    <updated>2012-09-03T09:39:00-04:00</updated>
+    <id>http://jdodds.github.com/blog/2012/09/03/a-more-in-depth-look-at-how-what-im-trying-to-do-is-different</id>
+    <content type="html"><![CDATA[<p>A few days ago, I posted a link to <a href="http://www.reddit.com">reddit</a> about the
+<a href="http://www.indiegogo.com/customized-linux">&#8220;Customized Linux&#8221; project I&#8217;m trying to get funded</a>. It
+generated
+<a href="http://www.reddit.com/r/linux/comments/yx86b/im_trying_to_make_it_easy_for_people_to_generate/">quite a bit of discussion</a>,
+which you are, of course, free to read through if you&#8217;re so inclined.</p>
+
+<p>One thing that became clear was that I <strong>really</strong> needed to clarify just what
+exactly it is that I want this project to be and why the existing tools that let
+people customize Linux ISOs don&#8217;t cut it. I posted
+<a href="http://jdodds.github.com/blog/2012/08/27/the-difference-between-my-custom-linux-project-and-existing-tools/">a short attempt at clarification</a>,
+but for one it still wasn&#8217;t clear at the level that it needed to be, and for two
+I didn&#8217;t even really get a very solid phrasing of the idea in my head until
+a few hours after I had posted it.</p>
+
+<p>I&#8217;m hoping that this post will provide a clear and understandable overview of
+what I&#8217;d like to accomplish. We&#8217;ll start by taking a look at what the problems
+I&#8217;d like to solve are, and then take a look at why existing tools that have
+similar functionality aren&#8217;t solving those problems. We&#8217;ll wrap up with a bit of
+exposition on how we can go about creating good solutions for those problems.</p>
+
+<!-- more -->
+
+
+<h2>The Problems</h2>
+
+<p>One of the biggest mistakes I made when launching the indiegogo campaign for
+this project was putting a focus on it being something that will create
+customized Linux install and installation images. While it does do that, it&#8217;s an
+implementation detail, and there are plenty of existing tools that do similar
+things.</p>
+
+<p>Let&#8217;s take a look at the problems I&#8217;d like to solve. There are a few major
+problems, and this project would solve all of them. As far as I know, there
+aren&#8217;t any good existing tools that do so.</p>
+
+<h3>You Should Be Able to Have Your Software and Data Available Anywhere</h3>
+
+<p>We live in a pretty amazing time. According to a lot of people, it&#8217;s the future
+&#8211; and it certainly seems that way sometimes. We can communicate with people on
+the other side of the globe easily, and there are lots of things that we do
+everyday that were only barely imagined by the science fiction authors of the
+50s and 60s.</p>
+
+<p>I want to make it so that any computer you use can effectively be <strong>your</strong>
+computer with a reboot.</p>
+
+<p>Just about everyone who uses a computer on a regular basis has some set of
+programs that they like to use, and some files that they use often or need to
+have on hand often. People often have some configuration set up that they
+like. Examples of this are instant messaging programs, Dropbox accounts, desktop
+backgrounds, Firefox themes, papers they&#8217;re working on for school, and so on.</p>
+
+<p>Personally, I&#8217;ve spent quite a bit of time setting up my computer so that I can
+be as productive as possible. Unfortunately this means that working on other
+people&#8217;s computers can be painful.</p>
+
+<p>I don&#8217;t think that anyone should have to be in a situation where they don&#8217;t have
+access to the setup they want or need. You should be able to plug a USB stick
+into a computer, reboot it, and have the environment that you&#8217;re used to and the
+files that you want ready to go.</p>
+
+<p>There are some services that attempt to allow this, but they largely focus on
+providing <a href="http://en.wikipedia.org/wiki/Cloud_storage">cloud storage</a> of
+data.</p>
+
+<h3>Recovery Shouldn&#8217;t Be Hard For People Who Aren&#8217;t Gurus</h3>
+
+<p>Whenever a system gets into an unusable state, say through file corruption or
+important files being deleted, or virus infection, it can be very difficult to
+get things back into a known stable state.  Apple&#8217;s
+<a href="http://www.apple.com/support/timemachine/">Time Machine</a> provides a pretty nice
+solution for Mac users, but it can take a very long time, and it&#8217;s not reliable
+for every type of issue.</p>
+
+<p>Recovery partitions, like those used by OSX and Windows 7, can help restore the
+system to a basic usable state, but don&#8217;t help with much of anything else past
+that.</p>
+
+<p>It really shouldn&#8217;t be difficult to get back to <strong>exactly</strong> the setup you want.</p>
+
+<h3>Setting Up a New Machine How You Like It Should Be Incredibly Easy</h3>
+
+<p>This is almost the same issue as recovery, but with a more limited scope. When
+you buy a new laptop or desktop, for whatever reason, you shouldn&#8217;t have to do
+more than selecting &#8220;install my system&#8221; from a menu (or similar) to have
+everything set up the way you want it. As it is, people generally spend a few
+months remembering all the little bits and pieces of software that they used to
+use, and re-install them as they remember them.</p>
+
+<h2>You Shouldn&#8217;t Need to Know Much of Anything About Computers to Utilize a Solution</h2>
+
+<p>While I&#8217;m planning on implementing this on top of existing tools for a Linux
+distribution, it shouldn&#8217;t matter whether or not you even know what that is. For
+the vast majority of users, their computer is something that runs some
+particular applications, and has some particular files, and perhaps has some
+settings on it that help make it &#8220;theirs&#8221;.</p>
+
+<p>Look at the popularity of &#8220;app stores&#8221; like
+<a href="http://www.apple.com/osx/apps/app-store.html">the Mac App Store</a>,
+<a href="http://www.android.com/apps/">Google Play</a>, and
+<a href="https://apps.ubuntu.com/cat/">the Ubuntu apps directory</a>. A large part of the
+reason they&#8217;re popular (other than sometimes being the only legitimate way to
+get software onto a device) is that they let most users focus on getting
+software on their device that fills a particular need. I think that most user&#8217;s
+entire computing stack should be capable of being generated in a similar way to
+finding and installing a piece of software from an app store.</p>
+
+<p>The vast majority of users don&#8217;t know or care to know about partitioning
+schemes, bootloaders, tools like chef, internationalization issues, and a
+million other things &#8211; and they <strong>shouldn&#8217;t</strong>. Furthermore, they should still
+be able to have everything they want or need available to them wherever they
+are, and they should be able to specify what they want without needing to learn
+a massive amount of stuff about the way computers work. Ideally, they could be
+someone who has never heard of a &#8220;package manager&#8221; before and still be able to
+use a service that lets them setup their machine with Firefox and Digsby with their
+accounts loaded on them painlessly.</p>
+
+<p>I think that this is can be accomplished by creating a service that focuses on
+providing a clean interface to app selection and allowing user-data to be
+uploaded/specified and then creates live and install images that contain those
+things.</p>
+
+<p>This is possibly the hardest part to convey about what I&#8217;d like to create. The
+solution to the problems I&#8217;d like to solve is a technical solution, and I&#8217;m very
+used to talking about technical solutions in terms of the implementation of
+those solutions, and that type of phrasing just doesn&#8217;t cut it when trying to
+show the potential value to someone who hasn&#8217;t spent the last decade of their
+life immersing themselves in neckbeard lore.</p>
+
+<p>In short: I don&#8217;t think that <strong>anyone</strong> should have to let out a large mental
+sigh when they think about setting up a new computer, nor should they be
+inconvenienced by not remembering their laptop as long as there&#8217;s a machine they
+can use nearby. All they should need to know is that they can plug the USB stick
+they have on their keychain into a machine, do one or two things, and then have
+access to what they need or have their new machine set up how they like it.</p>
+
+<h2>Existing Tools and Why They Don&#8217;t Solve The Problems</h2>
+
+<p>Before getting started on this section, I&#8217;d like to mention that I don&#8217;t think
+that any of these tools are bad tools. I think they all have their place, and I
+think that for the most part they&#8217;re well-done. That said, I don&#8217;t think any of
+them solve the problems I&#8217;m trying to solve.</p>
+
+<h3><a href="http://susestudio.com/">SUSE Studio</a></h3>
+
+<p>This is one of the closest things I&#8217;ve seen to being the service I want to
+create. It&#8217;s interface is clean, and it works very well &#8211; if you&#8217;re in the set
+of people who need it. A major reason that it doesn&#8217;t do what I want to do is
+that it requires that the user of it know <strong>a lot</strong> about the underlying
+platform.</p>
+
+<p>When you start creating a SUSE Studio &#8220;appliance&#8221;, you see this:</p>
+
+<p><img src="http://jdodds.github.com/images/suse-studio/type-of-application.png"></p>
+
+<p>It&#8217;s a nice interface, and a sane default selection, but there&#8217;s a whole lot of
+options there that the average user doesn&#8217;t know anything about. Different
+versions of SUSE? Gnome or KDE? A server? 32 or 64 bit?</p>
+
+<p>After selecting images and giving a name to what we want to do, we move on to
+software selection:</p>
+
+<p><img src="http://jdodds.github.com/images/suse-studio/software-selection.png"></p>
+
+<p>The same issue presents itself here. What&#8217;s a repository? An RPM? I do think
+that this is the sort of thing that should be <em>available</em> for customization by
+the user, but I don&#8217;t think it&#8217;s the sort of thing that should appear by
+default.</p>
+
+<p>In order to select nethack to be installed, I had to add a repository, then
+filter the search results to limit it to the repository I just added because
+there were a lot of results for the search.</p>
+
+<p>After adding nethack, we move on to configuration:</p>
+
+<p><img src="http://jdodds.github.com/images/suse-studio/general-configuration.png"></p>
+
+<p>This is really a very nice interface, and is something similar to what I would
+expose to a user that wanted to see this stuff. One issue is that when adding a
+user and choosing a default shell that hasn&#8217;t been selected prompts you to add
+it, I&#8217;d rather take the route of informing the user that it&#8217;s been added.</p>
+
+<p>The only part of this that I&#8217;d expose by default in the service I&#8217;m trying to
+make would be allowing the username of the default user to be changed.</p>
+
+<p>The &#8220;Personalize&#8221; section allowing you to upload or choose a logo and background
+image is well-done.</p>
+
+<p>The &#8220;Startup&#8221; section asks about runlevels and EULAs the person booting should
+have to agree to. This is not something I would expose by default.</p>
+
+<p>There&#8217;s a &#8220;Server&#8221; section (in the setup for the appliance type I chose, the
+default one) that would be largely unnecessary for the service I want to
+create.</p>
+
+<p>The &#8220;Desktop&#8221; section allows you to choose a user to auto-login and specify
+startup programs. This is something I wouldn&#8217;t expose at all by default.</p>
+
+<p>The &#8220;Appliance&#8221; and &#8220;Scripts&#8221; sections all require much more knowledge to know
+what to do with than I&#8217;d be comfortable exposing by default, although they do
+provide sane default choices.</p>
+
+<p>In the &#8220;Files&#8221; section, I had to manually specify the permissions and ownership
+information for the files I wanted to be present, and the interface requires
+some knowledge of the Linux Filesystem Hierarchy. Other than that, it&#8217;s
+well-done.</p>
+
+<p>The &#8220;Build&#8221; tab provides a bunch of options that aren&#8217;t going to be relevant for
+the average user, but the feedback provided while building was very nice. When I
+selected an &#8220;ISO&#8221;, I didn&#8217;t realize that I was going to have to click &#8220;build
+additional&#8221; to get my ISO, instead of being delivered the raw image that was
+selected as a default.</p>
+
+<p>When booting the iso provided, it didn&#8217;t auto-login as the user or login by
+default to a graphical interface, both of which were options I selected, and
+nethack wouldn&#8217;t run in the live environment due to permissions issues. The
+shell interface logged off periodically, and I didn&#8217;t get to the point where I
+installed a real environment to check if nethack was there because I have no
+idea what I&#8217;m supposed to do to do that, and had already spent about an hour
+fiddling around.</p>
+
+<p>In short, minus the ISO not working as expected, SUSE studio is targeted at
+people who use and love SUSE, and want to make special-purpose SUSE builds, not
+at the problems I&#8217;m trying to solve.</p>
+
+<h3><a href="http://www.slax.org/">slax</a></h3>
+
+<p>Slax is another project that is similar on a high-level, but also suffers from
+requiring a lot of knowledge from the user. I also couldn&#8217;t find an obvious way
+to add data to the build I made. The iso I generated included nethack in the
+live environment, but I didn&#8217;t see an easy way to do a to-disk install.</p>
+
+<h3>Other Tools</h3>
+
+<p>Some other tools that were mentioned that might be similar to what I&#8217;m trying to
+do, including <a href="http://fedoraproject.org/wiki/Anaconda">anaconda</a>,
+<a href="http://puppylinux.org/wikka/woof">woof</a>, <a href="http://pizza.slitaz.org/">pizza</a>,
+<a href="http://www.t2-project.org/">T2</a>, <a href="http://uck.sourceforge.net/">UCK</a>,
+<a href="http://www.remastersys.com/">Remastersys</a>, and
+<a href="http://sourceforge.net/projects/mylivecd/">MyLiveCD</a>.</p>
+
+<p>All of the above tools require some combination of needing the user to be
+already running a (often specific) Linux distro to run and needing the user to
+really understand what&#8217;s happening at a lower level. Many of them also don&#8217;t
+offer a way to take the applications and user-specified configuration in the
+live environment and include them in a to-disk install.</p>
+
+<p>Most of them, if not all of them are trying to solve a different core problem or
+problems from the set of problems I&#8217;m trying to solve. They tend to be
+explicitly allowing a user to create custom live environments, or create very
+fine-grained and specially purposed customizations of specific distributions.</p>
+
+<h3>Summary</h3>
+
+<p>I&#8217;m not aware of any existing tools that address the problems I&#8217;m trying to
+address. While my project would have a similar implementation to some of the
+tools mentioned, it would have a very different focus.</p>
+
+<h2>Conclusion</h2>
+
+<p>From a technical standpoint, the generation of a media containing some set of
+software that allows an installation to be made that has the same applications
+and user configuration as the live environment isn&#8217;t incredibly hard to
+solve. The challenging technical issues largely stem from the resource-intensive
+nature of image generation and hosting. If people want to hear about all that
+sooner rather than later, I can write about it.</p>
+
+<p>The other, and larger side of the coin here is focusing on creating an interface
+that the average computer user can make use of. I plan on making the initial
+interface very close to the interfaces that existing app stores used &#8211; the
+focus should be on what applications the user needs to be able to run, and with
+what configuration. I&#8217;d like to be as objective about interface issues as
+possible, and would be looking at having someone who&#8217;s passionate about
+<a href="http://en.wikipedia.org/wiki/User_experience_design">UXD</a>  work on the
+interface, and doing <a href="http://en.wikipedia.org/wiki/A/B_testing">A/B Testing</a>
+with different interface ideas and before rolling out interface updates to
+existing users. I&#8217;m also looking at creating some tools for checking an existing
+system for installed software to help create and suggest defaults for
+generation.</p>
+
+<p>This is something I&#8217;ve wanted to do, at least on a high level, for almost all of
+my time using computers in a non-trivial fashion. I&#8217;ve got the skill to make it
+a reality, but I can&#8217;t afford to give it the attention it deserves without
+finances. If I was in a better place financially, I&#8217;d fund the development of
+this myself &#8211; and if I fail to acquire funding for it in the near future, I&#8217;ll
+pursue it if and when I&#8217;m in a place to do so.</p>
+
+<p>That said, it would be absolutely awesome if the community as a whole decided
+that this is a service they&#8217;d rather see sooner than later &#8211; if you feel that
+way, do us all a big favor and
+<a href="http://www.indiegogo.com/customized-linux">support the indiegogo campaign</a>, and
+tell other people that you think would be interested!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[The Difference Between My Custom Linux Project and Existing Tools]]></title>
