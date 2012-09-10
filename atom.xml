@@ -4,7 +4,7 @@
   <title><![CDATA[Exhortatory]]></title>
   <link href="http://jdodds.github.com/atom.xml" rel="self"/>
   <link href="http://jdodds.github.com/"/>
-  <updated>2012-09-03T11:39:24-04:00</updated>
+  <updated>2012-09-10T18:25:05-04:00</updated>
   <id>http://jdodds.github.com/</id>
   <author>
     <name><![CDATA[Jeremiah Dodds]]></name>
@@ -12,6 +12,265 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[tecs - boolean logic 1.1: background]]></title>
+    <link href="http://jdodds.github.com/blog/2012/09/10/tecs-boolean-logic-1-dot-1-background/"/>
+    <updated>2012-09-10T17:43:00-04:00</updated>
+    <id>http://jdodds.github.com/blog/2012/09/10/tecs-boolean-logic-1-dot-1-background</id>
+    <content type="html"><![CDATA[<p>This is part of a series of posts going through
+<a href="http://www1.idc.ac.il/tecs/">The Elements of Computing Systems</a>. This post
+covers the background section of the first chapter, which is about Boolean
+Logic.</p>
+
+<!-- more -->
+
+
+<h2>Boolean Logic</h2>
+
+<p>All digital devices are made of logic gates. In this book, we&#8217;ll start with a
+Nand gate and build the other gates from it.</p>
+
+<h2>Background</h2>
+
+<p>Boolean gates are implementations of Boolean functions.</p>
+
+<h3>Boolean Algebra</h3>
+
+<p>A Boolean function operates on binary inputs and returns binary outputs.</p>
+
+<h4>Truth Table Representation</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>| x | y | z | f(x, y, z) |
+</span><span class='line'>|---+---+---+------------|
+</span><span class='line'>| 0 | 0 | 0 |          0 |
+</span><span class='line'>| 0 | 0 | 1 |          0 |
+</span><span class='line'>| 0 | 1 | 0 |          1 |
+</span><span class='line'>| 0 | 1 | 1 |          0 |
+</span><span class='line'>| 1 | 0 | 0 |          1 |
+</span><span class='line'>| 1 | 0 | 1 |          0 |
+</span><span class='line'>| 1 | 1 | 0 |          1 |
+</span><span class='line'>| 1 | 1 | 1 |          0 |</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Boolean Expressions</h4>
+
+<p>The basic operators are &#8220;And&#8221;, &#8220;Or&#8221;, and &#8220;Not&#8221;</p>
+
+<ul>
+<li><code>x * y</code> is &#8220;x And y&#8221;</li>
+<li><code>x + y</code> is &#8220;x Or y&#8221;</li>
+<li><code>!x</code> is &#8220;Not x&#8221;</li>
+</ul>
+
+
+<p>The table above could be represented as <code>f(x,y,z) = (x + y) * !z</code>.</p>
+
+<h4>Canonical Representation</h4>
+
+<p>Every Boolean function can be expressed as at least one Boolean Expression, the
+&#8220;canonical representation&#8221;</p>
+
+<p>For each row in the function&#8217;s truth table that has a value of 1, create a term
+by <code>And</code>ing literals that &#8220;fix&#8221; the values of the row&#8217;s inputs.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>| x | y | z | f(x, y, z) |
+</span><span class='line'>|---+---+---+------------|
+</span><span class='line'>| 0 | 0 | 0 |          0 |
+</span><span class='line'>| 0 | 0 | 1 |          0 |
+</span><span class='line'>| 0 | 1 | 0 |          1 |
+</span><span class='line'>| 0 | 1 | 1 |          0 |
+</span><span class='line'>| 1 | 0 | 0 |          1 |
+</span><span class='line'>| 1 | 0 | 1 |          0 |
+</span><span class='line'>| 1 | 1 | 0 |          1 |
+</span><span class='line'>| 1 | 1 | 1 |          0 |</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For the third row, the term would be <code>!xy!z</code>. For the fifth, <code>x!y!z</code> and for the
+seventh, <code>xy!z</code>. If we <code>Or</code> those three terms together, we&#8217;ll have a boolean
+expression that is equivalent to the given truth table, <code>!xy!z + x!y!z + xy!z</code></p>
+
+<h4>Two-Input Boolean Functions</h4>
+
+<p>The number of Boolean functions that can be defined over <code>n</code> binary variables is
+<code>2^2^n</code></p>
+
+<p>There are, therefore, sixteen functions possible over two boolean variables:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>| Function    | x               | 0 0 1 1 |
+</span><span class='line'>|             | y               | 0 1 0 1 |
+</span><span class='line'>|-------------+-----------------+---------|
+</span><span class='line'>| Constant 0  | 0               | 0 0 0 0 |
+</span><span class='line'>| And         | x * y           | 0 0 0 1 |
+</span><span class='line'>| x And Not y | x * !y          | 0 0 1 0 |
+</span><span class='line'>| x           | x               | 0 0 1 1 |
+</span><span class='line'>| Not x And y | !x * y          | 0 1 0 0 |
+</span><span class='line'>| y           | y               | 0 1 0 1 |
+</span><span class='line'>| Xor         | x * !y + !x * y | 0 1 1 0 |
+</span><span class='line'>| Or          | x + y           | 0 1 1 1 |
+</span><span class='line'>| Nor         | !(x + y)        | 1 0 0 0 |
+</span><span class='line'>| Equivalence | x * y + !x * y  | 1 0 0 1 |
+</span><span class='line'>| Not y       | !y              | 1 0 1 0 |
+</span><span class='line'>| If y then x | x + !y          | 1 0 1 1 |
+</span><span class='line'>| Not x       | !x              | 1 1 0 0 |
+</span><span class='line'>| If x then y | !x + y          | 1 1 0 1 |
+</span><span class='line'>| Nand        | !(x * y)        | 1 1 1 0 |
+</span><span class='line'>| Constant 1  | 1               | 1 1 1 1 |</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Both <code>Nand</code> and <code>Nor</code> are capable of constructing <code>And</code>, <code>Or</code>, and <code>Not</code> without
+using any other functions.</p>
+
+<h3>Gate Logic</h3>
+
+<p>A <code>gate</code> is a device that implements a Boolean function. A Boolean function that
+operates on <code>n</code> variables and returns <code>m</code> binary results will have <code>n</code> input
+pins and <code>m</code> output pins.</p>
+
+<p>Complex gates can be made from more elementary gates, the same way that complex
+functions can be made from simpler functions.</p>
+
+<p>Any technology that allows switching and conducting capabilities can be used to
+transmit data between gates, they are not intrinsically tied to
+electricity. This allows computer scientists to work on a more abstract level.</p>
+
+<h4>Primitive and Composite Gates</h4>
+
+<p>Logic gates can be chained together to create &#8220;composite gates&#8221;. If we wanted to
+make a gate that implemented <code>And(a,b,c)</code>, we could do it as <code>And(And(a,b),c)</code>.</p>
+
+<p>If we wanted to implement <code>Xor(a,b)</code>, we could do so as
+<code>Or(And(a,Not(b)),And(Not(a),b))</code>.</p>
+
+<p>The function being implemented &#8211; <code>Xor(a,b)</code> or <code>And(a,b,c)</code> &#8211; can only be
+represented in one way when referring to it&#8217;s high-level interface, but the
+implementation of that interface &#8211; <code>Or(And(a,Not(b)),And(Not(a),b))</code> or
+<code>And(And(a,b),c)</code> &#8211; might be done in many ways. For instance, it&#8217;s possible to
+implement <code>Xor</code> using only four gates rather than five.</p>
+
+<h3>Actual Hardware Construction</h3>
+
+<p>We could, of course, actually acquire hardware and wire it up to test potential
+implementations of interfaces needed. This would, however, be rather tedious.</p>
+
+<h3>Hardware Description Language (HDL)</h3>
+
+<p>Hardware designers generally write an HDL (or VHDL) program which can be run in
+a simulator and subjected to a bunch of tests and performance measurements.</p>
+
+<p>An HDL definition of a chip consists of a &#8220;header&#8221; section, and a &#8220;parts&#8221;
+section. The header specifies the chip&#8217;s interface &#8211; it&#8217;s name and the names of
+it&#8217;s input and output pins. The parts section describes the names and
+connections between the lower-level parts that make up the chip. This requires
+that the designer have complete docs of the interfaces of the lower-level parts.</p>
+
+<p>Here&#8217;s an HDL program describing <code>Xor</code>:</p>
+
+<figure class='code'><figcaption><span> (xor.vhdl)</span> <a href='http://jdodds.github.com/downloads/code/tecs/boolean-logic/background/xor.vhdl'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='vhdl'><span class='line'><span class="n">CHIP</span> <span class="k">Xor</span> <span class="err">{</span>
+</span><span class='line'>  <span class="k">in</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">out</span> <span class="k">out</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">parts</span><span class="o">:</span>
+</span><span class='line'>  <span class="k">Not</span><span class="p">(</span><span class="k">in</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="k">out</span><span class="o">=</span><span class="n">nota</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">Not</span><span class="p">(</span><span class="k">in</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="k">out</span><span class="o">=</span><span class="n">notb</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">And</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">notb</span><span class="p">,</span> <span class="k">out</span><span class="o">=</span><span class="n">w1</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">And</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">nota</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="k">out</span><span class="o">=</span><span class="n">w2</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">Or</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">w1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">w2</span><span class="p">,</span> <span class="k">out</span><span class="o">=</span><span class="k">out</span><span class="p">);</span>
+</span><span class='line'><span class="err">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Most hardware simulators are designed to be able to run test scripts, here&#8217;s an
+example of one written for Xor:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>load Xor.vhdl,
+</span><span class='line'>output-list a, b, out;
+</span><span class='line'>set a 0, set b 0,
+</span><span class='line'>eval, output;
+</span><span class='line'>set a 0, set b 1,
+</span><span class='line'>eval, output;
+</span><span class='line'>set a 1, set b 0,
+</span><span class='line'>eval, output;
+</span><span class='line'>set a 1, set b 1,
+</span><span class='line'>eval, output;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And it&#8217;s possible output:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>| a | b | out |
+</span><span class='line'>|---+---+-----|
+</span><span class='line'>| 0 | 0 | 0   |
+</span><span class='line'>| 0 | 1 | 1   |
+</span><span class='line'>| 1 | 0 | 1   |
+</span><span class='line'>| 1 | 1 | 0   |</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[TECS: Introduction]]></title>
