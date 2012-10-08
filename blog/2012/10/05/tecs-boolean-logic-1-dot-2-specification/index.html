@@ -1,0 +1,627 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>TECS - boolean logic 1.2: specification - Exhortatory</title>
+  <meta name="author" content="Jeremiah Dodds">
+
+  
+  <meta name="description" content="This is part of a series of posts going through
+The Elements of Computing Systems. This post
+covers section 1.2, the specification of a typical set &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jdodds.github.com/blog/2012/10/05/tecs-boolean-logic-1-dot-2-specification/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Exhortatory" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33990964-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Exhortatory</a></h1>
+  
+    <h2>0x23 0x21</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jdodds.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-05T12:18:00-04:00" pubdate data-updated="true">Friday 2012-10-05 at 12:18 PM</time>
+    
+    
+      <h1 class="entry-title">TECS - Boolean Logic 1.2: Specification</h1>
+    
+  </header>
+
+
+<div class="entry-content"><p>This is part of a series of posts going through
+<a href="http://www1.idc.ac.il/tecs/">The Elements of Computing Systems</a>. This post
+covers section 1.2, the specification of a typical set of gates, which will be
+built on top of later.</p>
+
+<p>We&#8217;ll be starting with a <code>Nand</code> gate, and deriving all other gates from it.</p>
+
+<!-- more -->
+
+
+<h2>The <code>Nand</code> Gate</h2>
+
+<p>The <code>Nand</code> gate computes the following:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>| a | b | Nand(a,b) |
+</span><span class='line'>|---+---+-----------|
+</span><span class='line'>| 0 | 0 |         1 |
+</span><span class='line'>| 0 | 1 |         1 |
+</span><span class='line'>| 1 | 0 |         1 |
+</span><span class='line'>| 1 | 1 |         0 |</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And can be specified as:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Chip Name : Nand
+</span><span class='line'>Inputs    : a, b
+</span><span class='line'>Outputs   : out
+</span><span class='line'>Function  : If a=b=1 then out=0 else out=1
+</span><span class='line'>Comment   : This gate is considered primitive, there is no need to implement it.</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Basic Logic Gates</h2>
+
+<p>These gates are referred to as &#8220;elementary&#8221; or &#8220;basic&#8221;, but we do not consider
+them &#8220;primitive&#8221; because they can be created from <code>Nand</code> gates.</p>
+
+<h3>Not</h3>
+
+<p>Also known as a &#8220;converter&#8221;, sets its output to whatever its input isn&#8217;t.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Chip Name : Not
+</span><span class='line'>Inputs    : in
+</span><span class='line'>Outputs   : out
+</span><span class='line'>Function  : If in=0 then out=1 else out=0</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>And</h3>
+
+<p>Returns 1 if and only if both of its inputs are 1.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Chip Name : And
+</span><span class='line'>Inputs    : a, b
+</span><span class='line'>Outputs   : out
+</span><span class='line'>Function  : If a=b=1 then out=1 else out=0.</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Or</h3>
+
+<p>Returns 1 if at least one of its inputs is 1.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Chip Name : Or
+</span><span class='line'>Inputs    : a, b
+</span><span class='line'>Outputs   : out
+</span><span class='line'>Function  : If a=b=0 then out=0 else out=1.</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Xor</h3>
+
+<p>&#8220;Exclusive or&#8221;, returns 1 if its inputs have opposite values.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Chip Name : Xor
+</span><span class='line'>Inputs    : a, b
+</span><span class='line'>Outputs   : out
+</span><span class='line'>Function  : If a&lt;&gt;b then out=1 else out=0.</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Multiplexor</h3>
+
+<p>A three-input gate, it uses one input to select as output the value of one of
+the other two inputs. The bit used to select is called the &#8220;selection bit&#8221;, the
+other two inputs are called &#8220;data bits&#8221;.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Chip Name : Mux
+</span><span class='line'>Inputs    : a, b, sel
+</span><span class='line'>Outputs   : out
+</span><span class='line'>Function  : If sel=0 then out=a else out=b</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>Mux</code> calculates the following function:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>| a | b | sel | out |
+</span><span class='line'>|---+---+-----+-----|
+</span><span class='line'>| 0 | 0 | 0   | 0   |
+</span><span class='line'>| 0 | 1 | 0   | 0   |
+</span><span class='line'>| 1 | 0 | 0   | 1   |
+</span><span class='line'>| 1 | 1 | 0   | 1   |
+</span><span class='line'>| 0 | 0 | 1   | 0   |
+</span><span class='line'>| 0 | 1 | 1   | 1   |
+</span><span class='line'>| 1 | 0 | 1   | 0   |
+</span><span class='line'>| 1 | 1 | 1   | 1   |</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Which could be abbreviated as:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>|sel|out|
+</span><span class='line'>|---+---|
+</span><span class='line'>| 0 | a |
+</span><span class='line'>| 1 | b |</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Demultiplexor</h3>
+
+<p>Takes a single input and sends it to one of two outputs depending on the value
+of a selector bit.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>| sel | a  | b  |
+</span><span class='line'>|-----+----+----|
+</span><span class='line'>|   0 | in | 0  |
+</span><span class='line'>|   1 | 0  | in |</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Chip Name : DMux
+</span><span class='line'>Inputs    : in, sel
+</span><span class='line'>Outputs   : a, b
+</span><span class='line'>Function  : If sel=0 then {a=in, b=0} else {a=0, b=in}</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Multi-Bit Versions of Basic Gates</h2>
+
+<p>Most computer hardware is meant to work on multi-bit arrays called &#8220;buses&#8221;. A
+32-bit computer needs to be able to compute <code>And</code> on two 32-bit buses. We can
+build an array of 32 separately-operating binary <code>And</code> gates, and stick it in a
+single chip with two 32-bit input buses and one 32-bit output bus.</p>
+
+<p>Here, we&#8217;re going to look at a set of multi-bit logic gates needed for a 16-bit
+computer. It&#8217;s worth noting that the architecture of <code>n</code>-bit logic gates is not
+very dependent on the value of <code>n</code>.</p>
+
+<h3>Multi-Bit Not</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Chip Name : Not16
+</span><span class='line'>Inputs    : in[16]
+</span><span class='line'>Outputs   : out[16]
+</span><span class='line'>Function  : for i=0..15 out[i]=Not(in[i]).</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Multi-Bit And</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Chip Name : And16
+</span><span class='line'>Inputs    : a[16], b[16]
+</span><span class='line'>Outputs   : out[16]
+</span><span class='line'>Function  : For i=0..15 out[i]=And(a[i],b[i]).</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Multi-Bit Or</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Chip Name : Or16
+</span><span class='line'>Inputs    : a[16], b[16]
+</span><span class='line'>Outputs   : out[16]
+</span><span class='line'>Function  : For i=0..15 out[i]=Or(a[i],b[i]).</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Multi-Bit Multiplexor</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Chip Name : Mux16
+</span><span class='line'>Inputs    : a[16], b[16], sel
+</span><span class='line'>Outputs   : out[16]
+</span><span class='line'>Function  : If sel=0 then for i=0..15 out[i]=a[i] else for i=0..15 out[i]=b[i].</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Multi-Way Versions of Basic Gates</h2>
+
+<p>A lot of logic gates that accept two inputs generalize easily to gates that
+accept an arbitrary number of inputs.</p>
+
+<h3>Multi-Way Or</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Chip Name : Or8Way
+</span><span class='line'>Inputs    : in[8]
+</span><span class='line'>Outputs   : out
+</span><span class='line'>Function  : out=Or(in[0],in[1],...,in[7]).</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Multi-Way/Multi-Bit Multiplexor</h3>
+
+<p>An <code>m</code>-way <code>n</code>-bit multiplexor chooses one of <code>m</code> <code>n</code>-bit input buses and
+outputs it to one <code>n</code>-bit output bus. Selection is controlled by <code>k</code> control
+bits, where <code>k = log2m</code>.</p>
+
+<p>The architecture we&#8217;re making in the book requires a 4-way 16-bit multiplexor,
+and an 8-way 16-bit multiplexor.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Chip Name : Mux4Way16
+</span><span class='line'>Inputs    : a[16], b[16], c[16], d[16], sel[2]
+</span><span class='line'>Outputs   : out[16]
+</span><span class='line'>Function  : If sel=00 then out=a else if sel=01 then out=b else if self=10 then out=c
+</span><span class='line'>            else if sel=11 then out=d
+</span><span class='line'>Comment   : The assignment operations mentioned above are all 16-bit. For
+</span><span class='line'>            example, "out=a" means "for i=0..15 out[i]=a[i]".</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Chip Name : Mux8Way16
+</span><span class='line'>Inputs    : a[16], b[16], c[16], d[16], e[16], f[16], g[16], h[16], sel[3]
+</span><span class='line'>Outputs   : out[16]
+</span><span class='line'>Function  : If sel=000 then out=a else if sel=001 then out=b else if sel=010 then
+</span><span class='line'>            out=c ... else if sel=111 then out=h
+</span><span class='line'>Comment   : The assignment operations mentioned above are all 16-bit. For
+</span><span class='line'>            example, "out=a" means "for i=0..15 out[i]=a[i]".</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Multi-Way/Multi-bit Demultiplexor</h3>
+
+<p>An <code>m</code>-way demultiplexor takes a single <code>n</code>-bit input to one of <code>m</code> <code>n</code>-bit
+outputs. Selection is controlled by a set of <code>k</code> control bits, where <code>k=log2m</code>.</p>
+
+<p>We&#8217;ll need a 4-way 1-bit demultiplexor, and an 8-way 1-bit multiplexor.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Chip Name : DMux4Way
+</span><span class='line'>Inputs    : in, sel[2]
+</span><span class='line'>Outputs   : a, b, c, d
+</span><span class='line'>Function  : If sel=00 then      (a=in, b=c=d=0)
+</span><span class='line'>            else if sel=01 then (b=in, a=c=d=0) 
+</span><span class='line'>            else if sel=10 then (b=in, a=b=d=0) 
+</span><span class='line'>            else if sel=11 then (d=in, a=b=c=0)</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Chip Name : DMux8Way
+</span><span class='line'>Inputs    : in, sel[3]
+</span><span class='line'>Outputs   : a, b, c, d, e, f, g, h
+</span><span class='line'>Function  : If sel=000 then      (a=in, b=c=d=e=f=g=h=0)
+</span><span class='line'>            else if sel=001 then (b=in, a=c=d=e=f=g=h=0) 
+</span><span class='line'>            else if sel=010 ...
+</span><span class='line'>            ...
+</span><span class='line'>            else if sel=111 then (h=in, a=b=c=d=e=f=g=0)</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jeremiah Dodds</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-05T12:18:00-04:00" pubdate data-updated="true">Friday 2012-10-05 at 12:18 PM</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/tecs/'>TECS</a>, <a class='category' href='/blog/categories/book-runthroughs/'>book-runthroughs</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jdodds.github.com/blog/2012/10/05/tecs-boolean-logic-1-dot-2-specification/" data-via="kaens" data-counturl="http://jdodds.github.com/blog/2012/10/05/tecs-boolean-logic-1-dot-2-specification/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/09/16/diy-everything/" title="Previous Post: DIY Everything">&laquo; DIY Everything</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/10/05/tecs-boolean-logic-1-dot-2-specification/">TECS - boolean logic 1.2: specification</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/16/diy-everything/">DIY Everything</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/10/tecs-boolean-logic-1-dot-1-background/">tecs - boolean logic 1.1: background</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/03/tecs-introduction/">TECS: Introduction</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/03/a-more-in-depth-look-at-how-what-im-trying-to-do-is-different/">a more in-depth look at how what I'm trying to do is different</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("kaens", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/kaens" class="twitter-follow-button" data-show-count="false">Follow @kaens</a>
+  
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Jeremiah Dodds -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'exhortatory';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://jdodds.github.com/blog/2012/10/05/tecs-boolean-logic-1-dot-2-specification/';
+        var disqus_url = 'http://jdodds.github.com/blog/2012/10/05/tecs-boolean-logic-1-dot-2-specification/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
