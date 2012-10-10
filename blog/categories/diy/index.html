@@ -110,7 +110,53 @@
 
 <aside class="sidebar">
   
-    <section>
+    
+<section class="lastfm">
+Listening To
+<style type="text/css">
+  #lastfmList li{ text-align: left; }
+</style>
+<ul id="lastfmList">
+  <li class="loading">Updating tracks...</li>
+</ul>
+
+<script type="text/javascript">
+  $.domReady(function(){
+    getLastfmFeed("kaens", 1, "63a192e1024c6c4982036813c9f852b2");
+  });
+</script>
+
+<script lang="Javascript">
+function getLastfmFeed(user,count,api_key) {
+  count = parseInt(count, 10);
+  $.ajax({
+      url: "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=" + user + "&limit=" + count + "&api_key=" + api_key
+    , type: 'xml'
+    , error: function (err) { $('#lastfmList li.loading').addClass('error').text("Last.fm's busted"); }
+    , success: function(data) { showLastfmFeed(data); }
+  });
+}
+
+function showLastfmFeed(xml){
+  var tracklist = document.getElementById('lastfmList'),
+      content = '',
+      i=0;
+  
+  $(xml.responseXML).find("recenttracks").children().each(function(){
+    var artist = $(this).find('artist').text(),
+        name = $(this).find('name').text(),
+        date = $(this).find('date').text(),
+        url = $(this).find('url').text();
+    content += '<li id="lastfmItem_'+i+'"><a href="'+ url + '">' + name +'</a> by '+ artist + '<span class="date"> ' + prettyDate(date) + ' ago</span></li>';
+    i+=1;
+  });
+
+  tracklist.innerHTML = content;
+}
+</script>
+</section>
+
+<section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
